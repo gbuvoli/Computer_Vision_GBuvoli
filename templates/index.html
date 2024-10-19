@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentación de Minerales</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .plot-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .plot-container h3 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Segmentación de Minerales</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Procesar Imagen</button>
+    </form>
+
+    {% if graph_html_H %}
+        <h2>Canal Recomendado: {{ canal }}</h2>
+
+        <div class="plot-container">
+            <h3>Visualización - Canal H</h3>
+            <div id="plotly-graph-H">{{ graph_html_H | safe }}</div>
+
+            <h3>Visualización - Canal S</h3>
+            <div id="plotly-graph-S">{{ graph_html_S | safe }}</div>
+
+            <h3>Visualización - Canal V</h3>
+            <div id="plotly-graph-V">{{ graph_html_V | safe }}</div>
+        </div>
+    {% endif %}
+</body>
+</html>
